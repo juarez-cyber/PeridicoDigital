@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="es">
+<html lang="es" style="scroll-behavior: smooth;">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -22,20 +22,17 @@
     <p class="logo-tagline">"La verdad no espera — y nosotros tampoco"</p>
   </div>
  
-  
-<div class="hamburger-menu">
-  <button class="hamburger" id="menuBtn">
-    ☰ Secciones
-  </button>
+  <div class="hamburger-menu">
+    <button class="hamburger" id="menuBtn">
+      ☰ Secciones
+    </button>
 
-  <div class="mobile-menu" id="mobileMenu">
-    <a href="#deportes">Deportes</a>
-    <a href="#musica">Música</a>
-    <a href="#moda">Moda</a>
-    <a href="#comida">Comida</a>
-    <a href="#tecnologia">Tecnología</a>
+    <div class="mobile-menu" id="mobileMenu">
+      <a href="#portada">Portada</a>
+      <a href="#opinion">Opinión</a>
+      <a href="#puzzle">Pasatiempos</a>
+    </div>
   </div>
-</div>
 </header>
 
  
@@ -251,12 +248,12 @@
       <div class="footer-col">
         <h4>Secciones</h4>
         <ul>
-          <li><a href="#">Nacional</a></li>
-          <li><a href="#">Internacional</a></li>
-          <li><a href="#">Economía</a></li>
-          <li><a href="#">Ciencia</a></li>
-          <li><a href="#">Cultura</a></li>
-          <li><a href="#">Deportes</a></li>
+          <li><a href="#portada">Nacional</a></li>
+          <li><a href="#portada">Internacional</a></li>
+          <li><a href="#portada">Economía</a></li>
+          <li><a href="#portada">Ciencia</a></li>
+          <li><a href="#portada">Cultura</a></li>
+          <li><a href="#portada">Deportes</a></li>
         </ul>
       </div>
       <div class="footer-col">
@@ -542,8 +539,6 @@ function showWin() {
 resetPuzzle();
 </script>
  
-
-
 <script>
 const menuBtn = document.getElementById("menuBtn");
 const mobileMenu = document.getElementById("mobileMenu");
@@ -551,9 +546,14 @@ const mobileMenu = document.getElementById("mobileMenu");
 menuBtn.addEventListener("click", () => {
   mobileMenu.classList.toggle("show");
 });
-</script>
 
+// Cierra el menú al hacer clic en cualquier enlace
+mobileMenu.querySelectorAll("a").forEach(link => {
+  link.addEventListener("click", () => {
+    mobileMenu.classList.remove("show");
+  });
+});
+</script>
 
 </body>
 </html>
- 
