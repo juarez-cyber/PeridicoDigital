@@ -386,31 +386,10 @@
       .news-grid { grid-template-columns: 1fr; gap: 1.5rem; }
     }
 
-    .news-card {
+  .news-card {
   display: flex;
   flex-direction: column;
   gap: 0.75rem;
-  cursor: pointer;
-  transition: all .35s ease;
-  overflow: hidden;
-}
-
-.news-card.active {
-  transform: scale(1.02);
-  background: var(--paper-2);
-  padding: 1rem;
-  border-radius: 8px;
-  box-shadow: 0 10px 25px rgba(0,0,0,.15);
-}
-
-.news-extra {
-  max-height: 0;
-  overflow: hidden;
-  transition: max-height .4s ease;
-}
-
-.news-card.active .news-extra {
-  max-height: 300px;
 }
 
     .news-card:not(:last-child) {
