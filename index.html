@@ -434,23 +434,26 @@
       margin-bottom: 0;
     }
 
-    .news-card a:hover h3 { text-decoration: underline; color: var(--accent); cursor: pointer; }
+    /* Cambio para indicar que las tarjetas son clicks activos */
+    .news-card a { cursor: pointer; display: block; }
+    .news-card a:hover h3 { text-decoration: underline; color: var(--accent); }
 
-    /* ── VENTANA MODAL PARA AMPLIAR NOTICIA ── */
-    .modal-news {
+    /* ── ESTILOS DE LA NUEVA VENTANA EMERGENTE (MODAL EXPANSIBLE) ── */
+    .news-modal-overlay {
       display: none;
       position: fixed;
       inset: 0;
-      background: rgba(0,0,0,0.6);
-      backdrop-filter: blur(3px);
-      z-index: 2000;
+      background: rgba(0, 0, 0, 0.7);
+      backdrop-filter: blur(2px);
+      z-index: 9999;
       align-items: center;
       justify-content: center;
-      padding: 1rem;
+      padding: 1.5rem;
     }
-    .modal-news.show { display: flex; }
-    
-    .modal-news-box {
+
+    .news-modal-overlay.show { display: flex; }
+
+    .news-modal-box {
       background: var(--paper);
       color: var(--ink);
       max-width: 700px;
@@ -458,24 +461,31 @@
       max-height: 85vh;
       overflow-y: auto;
       border-radius: 4px;
-      border-top: 5px solid var(--accent);
-      box-shadow: 0 15px 40px rgba(0,0,0,0.4);
-      position: relative;
+      border-top: 4px solid var(--accent);
       padding: 2.5rem;
+      position: relative;
+      box-shadow: 0 15px 35px rgba(0,0,0,0.5);
     }
 
-    .modal-news-close {
+    .news-modal-close {
       position: absolute;
       top: 15px;
       right: 20px;
       background: transparent;
       border: none;
-      font-size: 1.8rem;
+      font-size: 2rem;
       cursor: pointer;
       color: var(--ink-3);
-      transition: color 0.2s;
+      line-height: 1;
     }
-    .modal-news-close:hover { color: var(--accent); }
+    .news-modal-close:hover { color: var(--accent); }
+
+    .modal-body-content p {
+      font-size: 16px;
+      line-height: 1.8;
+      color: var(--ink-2);
+      margin-bottom: 1rem;
+    }
 
     /* ── PUZZLE SECTION ── */
     .puzzle-section {
@@ -830,7 +840,7 @@
   </div>
 </section>
 
-<!-- ══════════════ DEPORTES ══════════════ -->
+<!-- ══════════════ DEPORTES (EDITADO CON EXPANSIONES) ══════════════ -->
 <section class="news-section" id="deportes">
   <div class="container">
     <div class="news-section-header">
@@ -839,13 +849,13 @@
     </div>
     <div class="news-grid">
 
-      <!-- TARJETA DE DEPORTE 1 (AMÉRICA VS CHIVAS) -->
+      <!-- Noticia 1: América vs Guadalajara -->
       <article class="news-card">
-        <a href="javascript:void(0);" class="trigger-news" 
+        <a class="expandable-news" 
+           data-category="Fútbol" 
            data-title="América derrota al Guadalajara en el Clásico Nacional con gol en el último minuto"
-           data-label="Fútbol"
            data-byline="Por Eduardo Ríos · Deportes · 22:14 hrs"
-           data-content="<p>Las Águilas se llevaron los tres puntos del Estadio Azteca con un tanto de Henry Martín al minuto 93, manteniendo el primer lugar de la tabla general.</p><p>El encuentro estuvo lleno de tensión desde el silbatazo inicial. Chivas dominó la posesión durante el segundo tiempo, estrellando dos balones en el poste. Sin embargo, un contraataque letal comandado por Diego Valdés terminó en un centro preciso para que Martín firmara el único gol de la noche, desatando la euforia americanista.</p>">
+           data-content="<p>Las Águilas del América se llevaron los tres puntos en una edición cardíaca del Clásico Nacional disputada en el Estadio Azteca, gracias a una anotación solitaria del delantero Henry Martín en el tiempo de compensación (minuto 93).</p><p>El partido estuvo lleno de drama, con llegadas de ambos conjuntos y dos postes salvadores para el Guadalajara durante el segundo tiempo. Con esta victoria, el cuadro azulcrema asegura el liderato de la tabla general en la recta final del torneo, mientras que las Chivas complican su pase directo a la liguilla y tendrán que buscar su boleto en la última jornada.</p>">
           <div class="news-card-img">
             <svg viewBox="0 0 480 270" xmlns="http://www.w3.org/2000/svg">
               <defs>
@@ -868,9 +878,11 @@
               <rect x="50" y="200" width="20" height="18" fill="none" stroke="white" stroke-width="2"/>
               <rect x="410" y="200" width="20" height="18" fill="none" stroke="white" stroke-width="2"/>
               <g fill="#fff" opacity="0.85">
-                <circle cx="180" cy="205" r="6"/>
-                <circle cx="300" cy="210" r="6"/>
-                <circle cx="240" cy="195" r="6"/>
+                <ellipse cx="180" cy="205" rx="5" ry="8"/>
+                <ellipse cx="300" cy="210" rx="5" ry="8"/>
+                <ellipse cx="240" cy="195" rx="5" ry="8"/>
+                <ellipse cx="140" cy="215" rx="5" ry="8"/>
+                <ellipse cx="340" cy="208" rx="5" ry="8"/>
               </g>
               <circle cx="240" cy="200" r="6" fill="white"/>
               <rect x="0" y="240" width="480" height="30" fill="rgba(178,34,34,0.85)"/>
@@ -884,13 +896,13 @@
         <div class="byline"><span class="author">Por Eduardo Ríos</span><span>· Deportes</span><span>· 22:14 hrs</span></div>
       </article>
 
-      <!-- TARJETA DE DEPORTE 2 (CANELO ÁLVAREZ) -->
+      <!-- Noticia 2: Canelo Álvarez -->
       <article class="news-card">
-        <a href="javascript:void(0);" class="trigger-news"
+        <a class="expandable-news"
+           data-category="Boxeo"
            data-title="Canelo Álvarez defenderá su título mundial en el Estadio Azteca ante 80,000 aficionados"
-           data-label="Boxeo"
            data-byline="Por Patricia Luna · Boxeo · 10:00 hrs"
-           data-content="<p>La pelea pactada para el 12 de julio promete ser el evento deportivo del año en México, con el campeón enfrentando al retador invicto ruso Artur Beterbiev.</p><p>El equipo del boxeador tapatío confirmó que las negociaciones terminaron de manera exitosa. Esta pelea representa el regreso de Saúl 'Canelo' Álvarez a un escenario masivo en su tierra natal, buscando unificar de forma definitiva los títulos de peso supermediano en una noche que colgará el cartel de lleno total.</p>">
+           data-content="<p>El campeón indiscutido de los pesos supermedianos, Saúl 'Canelo' Álvarez, hará historia el próximo 12 de julio al pactar la defensa de sus cetros mundiales en el monumental Estadio Azteca de la Ciudad de México.</p><p>Su rival asignado será el invicto noqueador ruso Artur Beterbiev, en una unificación de cinturones que los expertos catalogan como el desafío más peligroso en los últimos años de trayectoria del tapatío. Los organizadores esperan un lleno absoluto y una derrama económica récord para un evento de boxeo en territorio mexicano.</p>">
           <div class="news-card-img">
             <svg viewBox="0 0 480 270" xmlns="http://www.w3.org/2000/svg">
               <defs>
@@ -908,8 +920,18 @@
               <line x1="80" y1="220" x2="400" y2="220" stroke="#c8a060" stroke-width="3" opacity="0.7"/>
               <line x1="40" y1="170" x2="440" y2="170" stroke="#c8a060" stroke-width="3" opacity="0.7"/>
               <ellipse cx="240" cy="200" rx="80" ry="40" fill="rgba(255,220,100,0.15)"/>
+              <ellipse cx="200" cy="210" rx="18" ry="10" fill="#222"/>
+              <rect x="188" y="175" width="24" height="35" rx="4" fill="#333"/>
+              <circle cx="200" cy="168" r="12" fill="#333"/>
+              <ellipse cx="220" cy="185" rx="10" ry="7" fill="#b22222" transform="rotate(-20,220,185)"/>
+              <ellipse cx="280" cy="210" rx="18" ry="10" fill="#222"/>
+              <rect x="268" y="175" width="24" height="35" rx="4" fill="#1a3a6a"/>
+              <circle cx="280" cy="168" r="12" fill="#1a3a6a"/>
+              <ellipse cx="260" cy="185" rx="10" ry="7" fill="#1a3a8a" transform="rotate(20,260,185)"/>
               <circle cx="120" cy="50" r="20" fill="rgba(255,220,100,0.3)"/>
               <circle cx="360" cy="50" r="20" fill="rgba(255,220,100,0.3)"/>
+              <line x1="120" y1="70" x2="200" y2="190" stroke="rgba(255,220,100,0.1)" stroke-width="40"/>
+              <line x1="360" y1="70" x2="280" y2="190" stroke="rgba(255,220,100,0.1)" stroke-width="40"/>
               <rect x="0" y="240" width="480" height="30" fill="rgba(178,34,34,0.85)"/>
               <text x="240" y="258" font-family="Georgia,serif" font-size="11" fill="white" text-anchor="middle" font-weight="bold">BOXEO · TÍTULO MUNDIAL WBC</text>
             </svg>
@@ -926,15 +948,15 @@
 </section>
 </main>
 
-<!-- ══════════════ VENTANA MODAL PARA NOTICIAS (OCULTA POR DEFECTO) ══════════════ -->
-<div class="modal-news" id="newsModal">
-  <div class="modal-news-box">
-    <button class="modal-news-close" id="closeNewsModal">&times;</button>
-    <div class="section-label" id="modalNewsLabel">CATEGORÍA</div>
-    <h2 class="headline" id="modalNewsTitle" style="font-size: 2rem; margin-bottom: 1rem;">Título de la noticia</h2>
-    <div class="byline" id="modalNewsByline" style="margin-bottom: 1.5rem;">Por Autor</div>
-    <div class="body-copy" id="modalNewsContent">
-      <!-- Aquí se inyectará el texto completo -->
+<!-- ══════════════ NUEVA VENTANA MODAL (Oculta por defecto) ══════════════ -->
+<div class="news-modal-overlay" id="newsExpandedModal">
+  <div class="news-modal-box">
+    <button class="news-modal-close" id="closeNewsModalBtn">&times;</button>
+    <div class="section-label" id="modalCategory" style="margin-bottom: 0.5rem;">CATEGORÍA</div>
+    <h2 class="headline" id="modalTitle" style="font-size: 1.8rem; line-height: 1.3; margin-bottom: 0.8rem;">Título extendido</h2>
+    <div class="byline" id="modalByline" style="border-bottom: 1px solid var(--border); padding-bottom: 0.75rem; margin-bottom: 1.5rem;">Autor e info</div>
+    <div class="modal-body-content" id="modalMainContent">
+      <!-- Aquí se inyecta la información extra -->
     </div>
   </div>
 </div>
@@ -961,9 +983,9 @@
   </div>
 </footer>
 
-<!-- ══════════════ JAVASCRIPT ══════════════ -->
+<!-- ══════════════ JAVASCRIPT COMPLETADO ══════════════ -->
 <script>
-  // --- LÓGICA DEL MENÚ HAMBURGUESA ---
+  // LÓGICA DEL MENÚ HAMBURGUESA
   const menuBtn = document.getElementById('menuBtn');
   const mobileMenu = document.getElementById('mobileMenu');
 
@@ -974,54 +996,46 @@
     mobileMenu.classList.toggle('show');
   });
 
-  // Cierra el menú al hacer clic en un enlace
-  mobileMenu.querySelectorAll('a').forEach(link => {
-    link.addEventListener('click', () => {
-      menuBtn.setAttribute('aria-expanded', 'false');
-      menuBtn.classList.remove('open');
-      mobileMenu.classList.remove('show');
-    });
-  });
+  // SISTEMA DE INTERCEPCIÓN Y APERTURA DE NOTICIAS EXTENDIDAS
+  const modalOverlay = document.getElementById('newsExpandedModal');
+  const closeModalBtn = document.getElementById('closeNewsModalBtn');
+  
+  const modalCategory = document.getElementById('modalCategory');
+  const modalTitle = document.getElementById('modalTitle');
+  const modalByline = document.getElementById('modalByline');
+  const modalMainContent = document.getElementById('modalMainContent');
 
-  // --- LÓGICA DEL MODAL DE EXPANSION DE NOTICIAS ---
-  const newsModal = document.getElementById('newsModal');
-  const closeNewsModal = document.getElementById('closeNewsModal');
-  const modalNewsLabel = document.getElementById('modalNewsLabel');
-  const modalNewsTitle = document.getElementById('modalNewsTitle');
-  const modalNewsByline = document.getElementById('modalNewsByline');
-  const modalNewsContent = document.getElementById('modalNewsContent');
-
-  // Captura el click en cualquier tarjeta de noticia configurada
-  document.querySelectorAll('.trigger-news').forEach(card => {
-    card.addEventListener('click', function(e) {
-      e.preventDefault(); // Evita que la página salte
+  // Buscar todos los enlaces con comportamiento expansible
+  document.querySelectorAll('.expandable-news').forEach(newsLink => {
+    newsLink.addEventListener('click', function(event) {
+      event.preventDefault(); // Evita que recargue o salte la pantalla
       
-      // Extrae la información guardada en los atributos data-*
+      // Rescatar los textos guardados en los data-attributes de la tarjeta
+      const category = this.getAttribute('data-category');
       const title = this.getAttribute('data-title');
-      const label = this.getAttribute('data-label');
       const byline = this.getAttribute('data-byline');
-      const content = this.getAttribute('data-content');
+      const textExtra = this.getAttribute('data-content');
 
-      // Rellena la ventana modal con esos datos
-      modalNewsLabel.textContent = label;
-      modalNewsTitle.textContent = title;
-      modalNewsByline.textContent = byline;
-      modalNewsContent.innerHTML = content;
+      // Asignar los valores dinámicamente al interior de la ventana emergente
+      modalCategory.textContent = category;
+      modalTitle.textContent = title;
+      modalByline.textContent = byline;
+      modalMainContent.innerHTML = textExtra;
 
-      // Muestra el modal
-      newsModal.classList.add('show');
+      // Mostrar el modal agregando la clase CSS
+      modalOverlay.classList.add('show');
     });
   });
 
-  // Cierra el modal al pulsar la 'X'
-  closeNewsModal.addEventListener('click', () => {
-    newsModal.classList.remove('show');
+  // Cerrar el modal mediante el botón "X"
+  closeModalBtn.addEventListener('click', () => {
+    modalOverlay.classList.remove('show');
   });
 
-  // Cierra el modal si se hace clic fuera del recuadro blanco
-  window.addEventListener('click', (e) => {
-    if (e.target === newsModal) {
-      newsModal.classList.remove('show');
+  // Cerrar si el usuario hace clic en el fondo gris translúcido
+  window.addEventListener('click', (event) => {
+    if (event.target === modalOverlay) {
+      modalOverlay.classList.remove('show');
     }
   });
 </script>
